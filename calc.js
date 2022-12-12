@@ -26,13 +26,13 @@ opBtns.forEach((button) => {
 
 function num(number) {
     current.textContent = number;
-    currentNum += number;
+    currentNum = number;
 }
 
 function op(operator) {
     currentOp = operator;
     lastNum = current.textContent; 
-    last.textContent = `${currentNum} ${operator}`;
+    last.textContent = `${lastNum} ${operator}`;
     // evaluate();
 }
 
@@ -81,7 +81,7 @@ function operate(operator, a, b){
        case '-':
         return subtract(a, b)
         break;
-       case '*':
+       case 'x':
         return multiply(a, b)
         break;
        case '/':
