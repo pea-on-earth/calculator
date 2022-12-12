@@ -1,32 +1,58 @@
-let result = document.getElementById("result");
+let currentNum = '';
+let lastNum = '';
+let currentOp = '';
+
+let last = document.getElementById("last");
+let current = document.getElementById("current");
 const numBtns = document.querySelectorAll(".digit");
 const opBtns = document.querySelectorAll(".operator");
 const clearBtn = document.getElementById("clear");
+const enterBtn = document.getElementById("equals");
 
 numBtns.forEach((button) => {
     button.addEventListener('click', () => {
-        let num1 = button.textContent;
-        result.textContent = num1;
+        num(button.textContent);     
         console.log(button.textContent);
     })
 });
 
 opBtns.forEach((button) => {
     button.addEventListener('click', () => {
-        let op = button.textContent;
-        result.textContent += " " + op;
+        op(button.textContent);
         console.log(button.textContent);
     })
 });
 
-clearBtn.addEventListener('click', () => {
-    clear();
-});
 
-function clear(){
-    result.textContent = " ";
+function num(number) {
+    current.textContent = number;
+    currentNum += number;
+}
+
+function op(operator) {
+    currentOp = operator;
+    lastNum = current.textContent; 
+    last.textContent = `${currentNum} ${operator}`;
+    // evaluate();
+}
+
+function evaluate(){
+    last.textContent = `${lastNum} ${currentOp} ${currentNum}`
+    current.textContent = operate(currentOp, lastNum, currentNum);
 };
 
+enterBtn.addEventListener('click', () => evaluate());
+
+//clear
+clearBtn.addEventListener('click', () => clear());
+
+function clear(){
+    current.textContent = 0;
+    last.textContent = " ";
+    currentNum = 0;
+    lastNum = 0;
+};
+//
 
 
 function add(a, b){
