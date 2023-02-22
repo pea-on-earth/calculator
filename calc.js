@@ -1,3 +1,5 @@
+/*NOT FINISHED - needs some work on operation stages */
+
 let currentNum = '';
 let lastNum = '';
 let currentOp = '';
@@ -25,18 +27,24 @@ opBtns.forEach((button) => {
 
 
 function num(number) {
-    current.textContent = number;
-    currentNum = number;
-}
+    if (current.textContent === '0'){
+        current.textContent = number
+    } else {
+    current.textContent += number;
+    }
+    currentNum = current.textContent;
+};
 
 function op(operator) {
     currentOp = operator;
     lastNum = current.textContent; 
     last.textContent = `${lastNum} ${operator}`;
-    // evaluate();
+    current.textContent = " ";
+    //evaluate();
 }
 
 function evaluate(){
+    if (currentNum == NaN || lastNum == NaN) return;
     last.textContent = `${lastNum} ${currentOp} ${currentNum}`
     current.textContent = operate(currentOp, lastNum, currentNum);
 };
@@ -49,8 +57,8 @@ clearBtn.addEventListener('click', () => clear());
 function clear(){
     current.textContent = 0;
     last.textContent = " ";
-    currentNum = 0;
-    lastNum = 0;
+    currentNum = '';
+    lastNum = '';
 };
 //
 

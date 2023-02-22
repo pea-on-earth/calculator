@@ -4,16 +4,24 @@ body {
     align-items: center;
 }
 
+h2, .btns {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .display {
     background-color: aliceblue;
+    width: 500px;
+    min-height: 60px;
 }
 
 #current {
+    min-height: 32px;
     font-size: 20px;
 }
 
 #last {
-    font-size: 15px;
+    min-height: 20px;
+    font-size: 20px;
 }
 
 .btns {
